@@ -1,5 +1,3 @@
-// src/pages/ProofValidation.tsx
-
 import React, { useState, useEffect } from 'react';
 import {
   VStack,

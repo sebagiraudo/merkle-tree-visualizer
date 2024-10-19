@@ -1,5 +1,3 @@
-// src/components/MerkleNodeComponent.tsx
-
 import React from 'react';
 import {
   Box,
@@ -64,7 +62,6 @@ const MerkleNodeComponent: React.FC<MerkleNodeComponentProps> = ({
 
     // Navigate to the Proof Validation page with rootHash, proof, and leaf data in the URL
     const encodedProof = encodeURIComponent(proofString);
-    const encodedLeafData = encodeURIComponent(leafData[index]);
     navigate(
         `/proof-validation?rootHash=${encodeURIComponent(
             tree.hash

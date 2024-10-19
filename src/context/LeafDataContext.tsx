@@ -1,5 +1,3 @@
-// src/context/LeafDataContext.tsx
-
 import React, { createContext, useState } from 'react';
 
 interface LeafDataContextType {

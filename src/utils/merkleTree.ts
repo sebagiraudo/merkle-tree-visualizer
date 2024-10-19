@@ -1,5 +1,3 @@
-// src/utils/merkleTree.ts
-
 import SHA256 from 'crypto-js/sha256';
 
 export interface MerkleNode {
