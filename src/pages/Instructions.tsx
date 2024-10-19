@@ -28,17 +28,17 @@ const Instructions: React.FC = () => {
       <List spacing={3} mt={3}>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Select the Number of Levels: Use the dropdown menu to choose between
+          <Text as="span" fontWeight="bold">Select the Number of Levels:</Text> Use the dropdown menu to choose between
           2, 3, or 4 levels for your Merkle tree.
         </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Input Leaf Data: Enter data into each of the leaf nodes. The data
+          <Text as="span" fontWeight="bold">Input Leaf Data:</Text> Enter data into each of the leaf nodes. The data
           can be any string (e.g., "Alice", "Bob", "Charlie").
         </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Observe the Tree: As you input data, the Merkle tree visualization
+          <Text as="span" fontWeight="bold">Observe the Tree:</Text> As you input data, the Merkle tree visualization
           updates in real-time, showing how the leaf data affects the parent nodes
           and root hash.
         </ListItem>
@@ -53,17 +53,17 @@ const Instructions: React.FC = () => {
       <List spacing={3} mt={3}>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Select a Leaf Node: Find the leaf node for which you want to generate
+          <Text as="span" fontWeight="bold">Select a Leaf Node:</Text> Find the leaf node for which you want to generate
           a proof.
         </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Click "Validate": Click the "Validate" button beneath the leaf node.
+          <Text as="span" fontWeight="bold">Click "Validate":</Text> Click the "Validate" button beneath the leaf node.
           This will automatically generate a proof and copy it to your clipboard.
         </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Navigate to Proof Validation: You will be redirected to the Proof
+          <Text as="span" fontWeight="bold">Navigate to Proof Validation:</Text> You will be redirected to the Proof
           Validation page with the proof data pre-filled.
         </ListItem>
       </List>
@@ -77,23 +77,25 @@ const Instructions: React.FC = () => {
       <List spacing={3} mt={3}>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Review the Data: The root hash, leaf data, and proof are pre-populated.
+          <Text as="span" fontWeight="bold">Review the Data:</Text> The root hash, leaf data, and proof are pre-populated.
           You can modify them if you want to explore.
         </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Click "Validate Proof": This will initiate the verification process.
+          <Text as="span" fontWeight="bold">Click "Validate Proof":</Text> This will initiate the verification process.
         </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          View Results: The app will display whether the proof is valid or invalid.
+          <Text as="span" fontWeight="bold">View Results:</Text> The app will display whether the proof is valid or invalid.
           The Merkle tree visualization will highlight:
-          <ListItem>
-          - Blue Nodes: The path from the leaf to the root.
-          </ListItem>
-          <ListItem>
-          - Yellow Nodes: The sibling nodes used in the proof.
-          </ListItem>
+          <List spacing={2} pl={8}>
+            <ListItem>
+              <Text as="span" fontWeight="bold">Blue Nodes:</Text> The path from the leaf to the root.
+            </ListItem>
+            <ListItem>
+              <Text as="span" fontWeight="bold">Yellow Nodes:</Text> The sibling nodes used in the proof.
+            </ListItem>
+          </List>
         </ListItem>
       </List>
 
@@ -106,27 +108,29 @@ const Instructions: React.FC = () => {
       <List spacing={3} mt={3}>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Nodes: Each circle represents a node in the Merkle tree.
+          <Text as="span" fontWeight="bold">Nodes:</Text> Each circle represents a node in the Merkle tree.
         </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Hover for Hashes: Hover over a node to see its hash value.
+          <Text as="span" fontWeight="bold">Hover for Hashes:</Text> Hover over a node to see its hash value.
         </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          Colors:
+          <Text as="span" fontWeight="bold">Colors:</Text>
+          <List spacing={2} pl={8}>
             <ListItem>
-          - Gray: Default nodes.
-          </ListItem>
-          <ListItem>
-          - Green: Nodes that have changed due to leaf data updates.
-          </ListItem>
-          <ListItem>
-          - Blue: Nodes along the computed path during proof verification.
-          </ListItem>
-          <ListItem>
-          - Yellow: Sibling nodes included in the proof.
-          </ListItem>
+              <Text as="span" fontWeight="bold">Gray:</Text> Default nodes.
+            </ListItem>
+            <ListItem>
+              <Text as="span" fontWeight="bold">Green:</Text> Nodes that have changed due to leaf data updates.
+            </ListItem>
+            <ListItem>
+              <Text as="span" fontWeight="bold">Blue:</Text> Nodes along the computed path during proof verification.
+            </ListItem>
+            <ListItem>
+              <Text as="span" fontWeight="bold">Yellow:</Text> Sibling nodes included in the proof.
+            </ListItem>
+          </List>
         </ListItem>
       </List>
 
