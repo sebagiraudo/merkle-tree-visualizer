@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { VStack, Select, Text } from '@chakra-ui/react';
+import { VStack, Select, Text, Button } from '@chakra-ui/react';
 import { createMerkleTree, MerkleNode } from '../utils/merkleTree';
 import MerkleNodeComponent from '../components/MerkleNodeComponent';
+import { Link } from 'react-router-dom';
 
 const BasicMerkleTree = () => {
   const [levels, setLevels] = useState(2);
@@ -67,6 +68,14 @@ const BasicMerkleTree = () => {
             Root Hash: {tree.hash}
           </Text>
           <MerkleNodeComponent node={tree} leafData={leafData} onLeafDataChange={handleLeafDataChange} isRoot changedNodes={changedNodes} tree={tree} />
+          <Link
+           to={`/proof-validation?rootHash=${encodeURIComponent(tree.hash)}`}
+           style={{ textDecoration: 'none' }}
+         >
+           <Button colorScheme="blue" mt={2}>
+             Go to Proof Validation
+           </Button>
+         </Link>
         </>
       )}
     </VStack>

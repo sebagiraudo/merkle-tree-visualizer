@@ -1,5 +1,6 @@
 // src/utils/merkleTree.ts
 import CryptoJS from 'crypto-js';
+import SHA256 from 'crypto-js/sha256';
 
 // Merkle Node structure
 export interface MerkleNode {
@@ -90,3 +91,25 @@ export function getMerkleProof(
     traverse(root, 0, totalLeaves);
     return proof;
   }
+
+export function verifyMerkleProof(
+    leafValue: string,
+    proof: MerkleProofStep[],
+    rootHash: string
+): boolean {
+    let computedHash = hashFunction(leafValue);
+
+    for (const step of proof) {
+        if (step.direction === 'left') {
+        computedHash = hashFunction(step.hash + computedHash);
+        } else {
+        computedHash = hashFunction(computedHash + step.hash);
+        }
+    }
+
+    return computedHash === rootHash;
+}
+  
+export function hashFunction(data: string): string {
+    return SHA256(data).toString();
+}

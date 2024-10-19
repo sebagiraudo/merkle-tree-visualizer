@@ -1,8 +1,7 @@
-// src/components/MerkleNodeComponent.tsx
-
 import React from 'react';
 import { Box, Grid, Input, Tooltip, VStack, useToast, Button } from '@chakra-ui/react';
 import { MerkleNode, getMerkleProof } from '../utils/merkleTree';
+import { useNavigate } from 'react-router-dom';
 
 interface MerkleNodeComponentProps {
   node: MerkleNode;
@@ -23,6 +22,7 @@ const MerkleNodeComponent: React.FC<MerkleNodeComponentProps> = ({
   tree,
 }) => {
   const toast = useToast();
+  const navigate = useNavigate();
 
   const copyHashToClipboard = (hash: string) => {
     navigator.clipboard.writeText(hash);
@@ -34,23 +34,41 @@ const MerkleNodeComponent: React.FC<MerkleNodeComponentProps> = ({
     });
   };
 
- const copyProofToClipboard = () => {
-   const totalLeaves = leafData.length;
-   const proof = getMerkleProof(tree, index, totalLeaves);
-   navigator.clipboard.writeText(JSON.stringify(proof));
-   toast({
-     title: 'Proof copied to clipboard!',
-     status: 'success',
-     duration: 2000,
-     isClosable: true,
-   });
- };
+//  const copyProofToClipboard = () => {
+//    const totalLeaves = leafData.length;
+//    const proof = getMerkleProof(tree, index, totalLeaves);
+//    navigator.clipboard.writeText(JSON.stringify(proof));
+//    toast({
+//      title: 'Proof copied to clipboard!',
+//      status: 'success',
+//      duration: 2000,
+//      isClosable: true,
+//    });
+//  };
+
+  const handleValidateAndCopy = () => {
+       const totalLeaves = leafData.length;
+       const proof = getMerkleProof(tree, index, totalLeaves);
+    
+       const proofString = JSON.stringify(proof);
+       navigator.clipboard.writeText(proofString);
+       toast({
+         title: 'Proof copied to clipboard!',
+         status: 'success',
+         duration: 2000,
+         isClosable: true,
+       });
+    
+       // Navigate to the Proof Validation page with rootHash, proof, and leaf data in the URL
+       const encodedProof = encodeURIComponent(proofString);
+       const encodedLeafData = encodeURIComponent(leafData[index]);
+       navigate(`/proof-validation?rootHash=${tree.hash}&leafData=${encodedLeafData}&proof=${encodedProof}`);
+     };
 
   const isChanged = changedNodes.includes(node.hash);
 
   return (
     <VStack spacing={4} position="relative">
-      {/* Tooltip to display the hash on hover */}
       <Tooltip label={`Hash: ${node.hash}`} placement="top" hasArrow>
         <Box
           as="button"
@@ -74,8 +92,8 @@ const MerkleNodeComponent: React.FC<MerkleNodeComponentProps> = ({
             value={leafData[index]}
             onChange={(e) => onLeafDataChange(index, e.target.value)}
           />
-         <Button size="sm" onClick={copyProofToClipboard}>
-           Copy Proof
+         <Button size="sm" onClick={handleValidateAndCopy}>
+           Validate
          </Button>
         </>
       )}

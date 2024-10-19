@@ -6,15 +6,13 @@ import Header from './components/Header';
 
 const App = () => {
   return (
-    <>
     <VStack p={4} spacing={8}>
-      <Header/>
+      <Header />
       <Routes>
         <Route path="/" element={<BasicMerkleTree />} />
         <Route path="/proof-validation" element={<ProofValidation />} />
       </Routes>
-      </VStack>
-    </>
+    </VStack>
   );
 };
 
