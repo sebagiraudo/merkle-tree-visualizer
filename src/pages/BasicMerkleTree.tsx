@@ -66,7 +66,7 @@ const BasicMerkleTree = () => {
           <Text fontWeight="bold" mt={4} fontFamily="'Roboto Mono', monospace" fontSize="16px">
             Root Hash: {tree.hash}
           </Text>
-          <MerkleNodeComponent node={tree} leafData={leafData} onLeafDataChange={handleLeafDataChange} isRoot changedNodes={changedNodes} />
+          <MerkleNodeComponent node={tree} leafData={leafData} onLeafDataChange={handleLeafDataChange} isRoot changedNodes={changedNodes} tree={tree} />
         </>
       )}
     </VStack>
