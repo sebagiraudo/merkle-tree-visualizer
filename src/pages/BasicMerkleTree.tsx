@@ -1,5 +1,3 @@
-// src/pages/BasicMerkleTree.tsx
-
 import React, { useState, useEffect, useContext } from 'react';
 import { VStack, Select, Text, Button } from '@chakra-ui/react';
 import { createMerkleTree, MerkleNode } from '../utils/merkleTree';
