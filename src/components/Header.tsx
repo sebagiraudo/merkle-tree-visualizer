@@ -9,7 +9,7 @@ const Header: React.FC = () => (
     
     <Flex alignItems="center">
       <DarkModeSwitch />
-      <Link href="https://github.com" isExternal ml={4}>
+      <Link href="https://github.com/sebagiraudo/merkle-tree-visualizer" isExternal ml={4}>
         <Flex alignItems="center">
           <FaGithub />
           <Text ml={2}>View Source Code</Text>
