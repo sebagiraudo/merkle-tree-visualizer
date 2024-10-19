@@ -13,9 +13,10 @@ export interface MerkleProofStep {
 }
 
 export interface VerificationResult {
-  isValid: boolean;
-  computedHashes: string[];
-}
+    isValid: boolean;
+    computedHashes: string[];
+    proofHashes: string[];
+  }
 
 export function hashFunction(data: string): string {
   return SHA256(data).toString();
@@ -134,8 +135,13 @@ export function verifyMerkleProofWithPath(
     rootHash: string
   ): VerificationResult {
     let computedHash = hashFunction(leafValue);
-    const computedHashes = [computedHash];
-    for (const step of proof.reverse()) {
+    const computedHashes = [computedHash]; // Start with the leaf hash
+    const proofHashes = proof.map((step) => step.hash);
+  
+    // Reverse the proof to start from the leaft to the root
+    const reversedProof = [...proof].reverse();
+  
+    for (const step of reversedProof) {
       if (step.direction === 'left') {
         computedHash = hashFunction(step.hash + computedHash);
       } else {
@@ -146,5 +152,5 @@ export function verifyMerkleProofWithPath(
   
     const isValid = computedHash === rootHash;
   
-    return { isValid, computedHashes };
+    return { isValid, computedHashes, proofHashes };
   }

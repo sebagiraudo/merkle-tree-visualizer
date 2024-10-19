@@ -39,6 +39,7 @@ const ProofValidation: React.FC = () => {
 
   const [computedHashes, setComputedHashes] = useState<string[]>([]);
   const [tree, setTree] = useState<MerkleNode | null>(null);
+  const [proofHashes, setProofHashes] = useState<string[]>([]);
 
   useEffect(() => {
     if (leafDataArrayParam) {
@@ -72,7 +73,7 @@ const ProofValidation: React.FC = () => {
       }
 
       // Verify the proof and get the computed hashes
-      const { isValid, computedHashes } = verifyMerkleProofWithPath(
+      const { isValid, computedHashes, proofHashes } = verifyMerkleProofWithPath(
         leafData,
         proof,
         rootHash
@@ -80,6 +81,7 @@ const ProofValidation: React.FC = () => {
 
       setIsValid(isValid);
       setComputedHashes(computedHashes);
+      setProofHashes(proofHashes);
 
       if (!leafDataArray || leafDataArray.length === 0) {
         throw new Error('Leaf data is not available to reconstruct the Merkle tree.');
@@ -185,7 +187,8 @@ const ProofValidation: React.FC = () => {
             isRoot
             changedNodes={[]}
             tree={tree}
-            proofHashes={computedHashes} // Pass the computed hashes
+            computedHashes={computedHashes} // Pass computed hashes
+            proofHashes={proofHashes} // Pass proof hashes
           />
         </VStack>
       )}

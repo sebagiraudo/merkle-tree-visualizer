@@ -19,6 +19,7 @@ interface MerkleNodeComponentProps {
   isRoot?: boolean;
   changedNodes: string[];
   tree: MerkleNode;
+  computedHashes?: string[];
   proofHashes?: string[];
 }
 
@@ -29,6 +30,7 @@ const MerkleNodeComponent: React.FC<MerkleNodeComponentProps> = ({
   index = 0,
   changedNodes = [],
   tree,
+  computedHashes = [],
   proofHashes = [],
 }) => {
   const toast = useToast();
@@ -72,7 +74,8 @@ const MerkleNodeComponent: React.FC<MerkleNodeComponentProps> = ({
   };
 
   const isChanged = changedNodes.includes(node.hash);
-  const isInProofPath = proofHashes.includes(node.hash);
+  const isInComputedPath = computedHashes.includes(node.hash);
+  const isInProofHashes = proofHashes.includes(node.hash);
 
   return (
     <VStack spacing={4} position="relative">
@@ -89,14 +92,18 @@ const MerkleNodeComponent: React.FC<MerkleNodeComponentProps> = ({
           justifyContent="center"
           alignItems="center"
           bg={
-            isInProofPath
+            isInProofHashes
+              ? 'yellow.300'
+              : isInComputedPath
               ? 'blue.300'
               : isChanged
               ? 'green.300'
               : 'gray.300'
           }
           _hover={{
-            bg: isInProofPath
+            bg: isInProofHashes
+              ? 'yellow.400'
+              : isInComputedPath
               ? 'blue.400'
               : isChanged
               ? 'green.400'
@@ -127,6 +134,7 @@ const MerkleNodeComponent: React.FC<MerkleNodeComponentProps> = ({
             index={index * 2}
             changedNodes={changedNodes}
             tree={tree}
+            computedHashes={computedHashes}
             proofHashes={proofHashes}
           />
           <MerkleNodeComponent
@@ -136,6 +144,7 @@ const MerkleNodeComponent: React.FC<MerkleNodeComponentProps> = ({
             index={index * 2 + 1}
             changedNodes={changedNodes}
             tree={tree}
+            computedHashes={computedHashes}
             proofHashes={proofHashes}
           />
         </Grid>
