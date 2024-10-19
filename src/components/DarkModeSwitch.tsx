@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Icon, useColorMode } from '@chakra-ui/react';
+import { Flex, IconButton, useColorMode } from '@chakra-ui/react';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 
 const DarkModeSwitch: React.FC = () => {
@@ -7,12 +7,15 @@ const DarkModeSwitch: React.FC = () => {
 
   return (
     <Flex alignItems="center">
-      <Icon
-        as={colorMode === 'dark' ? SunIcon : MoonIcon}
+      <IconButton
+        icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
         boxSize={5}
         mr={2}
-        cursor="pointer"
         onClick={toggleColorMode}
+        aria-label='Toggle Dark Mode'
+        variant="ghost"
+        height={10}
+        width={10}
       />
     </Flex>
   );
