@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { VStack, Select, Text } from '@chakra-ui/react';
 import { createMerkleTree, MerkleNode } from '../utils/merkleTree';
 import MerkleNodeComponent from '../components/MerkleNodeComponent';
-import Header from '../components/Header';
 
 const BasicMerkleTree = () => {
   const [levels, setLevels] = useState(2);
@@ -56,10 +55,6 @@ const BasicMerkleTree = () => {
 
   return (
     <VStack p={4} spacing={8}>
-      <Header />
-
-      
-
       <Select width="200px" value={levels} onChange={handleLevelsChange}>
         <option value={2}>2 Levels</option>
         <option value={3}>3 Levels</option>
